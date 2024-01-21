@@ -11,7 +11,8 @@ namespace csharp
             // Solutions.MyStack();
             // Solutions.SkyLine();
             // Solutions.Rob();
-            Solutions.FindModeBST();
+            // Solutions.FindModeBST();
+            Solutions.IsSubSequence();
         }
     }
 }

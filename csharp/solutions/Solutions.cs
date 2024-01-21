@@ -156,4 +156,37 @@ public class Solutions
         int[] result = findModeBST.FindMode();
         Console.WriteLine($"Result: {result.Select(r => $"{r}").Aggregate((a, b) => $"{a}, {b}")}");
     }
+
+    public static void IsSubSequence()
+    {
+        Console.WriteLine("Is Sub Sequence");
+        string s1 = "abc";
+        string s2 = "ahbgdc";
+        Console.WriteLine("Input: {0}, {1}", s1, s2);
+        bool result = IsSubSequence(s1, s2);
+        Console.WriteLine($"Result: {result}");
+    }
+
+    private static bool IsSubSequence(string s, string t)
+    {
+        if (string.IsNullOrEmpty(s)) return true;
+        if (string.IsNullOrEmpty(t)) return false;
+
+        int i = 0, j = 0;
+
+        do
+        {
+            if (s[i] == t[j])
+            {
+                i++;
+                j++;
+            }
+            else
+            {
+                j++;
+            }
+        } while (i < s.Length && j < t.Length);
+
+        return i == s.Length;
+    }
 }
