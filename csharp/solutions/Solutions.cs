@@ -1,3 +1,4 @@
+using System.Text;
 using static solutions.FindModeBST;
 
 namespace solutions;
@@ -188,5 +189,64 @@ public class Solutions
         } while (i < s.Length && j < t.Length);
 
         return i == s.Length;
+    }
+
+    public static void FindErrorInNums()
+    {
+        Console.WriteLine("Find Error In Nums");
+        int[] nums = [1, 2, 2, 4];
+        Console.WriteLine("Input: {0}", nums.Select(n => $"{n}").Aggregate((a, b) => $"{a}, {b}"));
+        int[] result = FindErrorInNums(nums);
+        Console.WriteLine($"Result: {result.Select(r => $"{r}").Aggregate((a, b) => $"{a}, {b}")}");
+    }
+
+    private static int[] FindErrorInNums(int[] nums)
+    {
+        int[] result = new int[2];
+        // Occurences of each number
+        int[] count = new int[nums.Length + 1];
+
+        foreach (var num in nums) count[num]++;
+
+        for (int i = 1; i < count.Length; i++)
+        {
+            // If a number has not occured, it is missing
+            if (count[i] == 0) result[1] = i;
+            // If a number has occured twice, it is the duplicate
+            else if (count[i] == 2) result[0] = i;
+        }
+
+        return result;
+    }
+
+    public static void ReverseWord()
+    {
+        Console.WriteLine("Reverse Word");
+        string s = "Let's take LeetCode contest";
+        Console.WriteLine("Input: {0}", s);
+        string result = ReverseWord(s);
+        Console.WriteLine($"Result: {result}");
+    }
+
+    private static string ReverseWord(string s)
+    {
+        var words = s.Split(' ');
+        var result = new StringBuilder();
+        foreach (var word in words)
+        {
+            result.Append(Reverse(word));
+            result.Append(' ');
+        }
+        return result.ToString().Trim();
+    }
+
+    private static string Reverse(string s)
+    {
+        var result = new StringBuilder();
+        for (int i = s.Length - 1; i >= 0; i--)
+        {
+            result.Append(s[i]);
+        }
+        return result.ToString();
     }
 }

@@ -12,7 +12,9 @@ namespace csharp
             // Solutions.SkyLine();
             // Solutions.Rob();
             // Solutions.FindModeBST();
-            Solutions.IsSubSequence();
+            // Solutions.IsSubSequence();
+            // Solutions.FindErrorInNums();
+            Solutions.ReverseWord();
         }
     }
 }
