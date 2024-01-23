@@ -249,4 +249,43 @@ public class Solutions
         }
         return result.ToString();
     }
+
+    public static void FindMaxConcatenatedString()
+    {
+        Console.WriteLine("Find Max Concatenated String");
+        string[] arr = ["cha", "r", "act", "ers"];
+        Console.WriteLine("Input: {0}", arr.Select(a => $"{a}").Aggregate((a, b) => $"{a}, {b}"));
+        int result = MaxLength(arr);
+        Console.WriteLine($"Result: {result}");
+    }
+
+    private static int MaxLength(IList<string> arr)
+    {
+        return Dfs(arr, "", 0);
+    }
+
+    private static int Dfs(IList<string> arr, string path, int idx)
+    {
+        bool isUniqueCharStr = path.Length == path.Distinct().Count();
+        if (!isUniqueCharStr) return 0;
+
+        int maxLen = path.Length;
+        for (int i = idx; i < arr.Count; i++)
+            maxLen = Math.Max(maxLen, Dfs(arr, path + arr[i], i + 1));
+
+        return maxLen;
+    }
+
+    // private static bool IsUniqueCharStr(string str)
+    // {
+    //     int[] count = new int[26];
+    //     foreach (char c in str)
+    //     {
+    //         if (count[c - 'a']++ > 0)
+    //         {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 }

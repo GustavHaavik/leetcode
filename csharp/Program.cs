@@ -14,7 +14,8 @@ namespace csharp
             // Solutions.FindModeBST();
             // Solutions.IsSubSequence();
             // Solutions.FindErrorInNums();
-            Solutions.ReverseWord();
+            // Solutions.ReverseWord();
+            Solutions.FindMaxConcatenatedString();
         }
     }
 }
