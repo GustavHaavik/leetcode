@@ -1,5 +1,5 @@
 using System.Text;
-using static solutions.FindModeBST;
+using utils;
 
 namespace solutions;
 
@@ -266,8 +266,7 @@ public class Solutions
 
     private static int Dfs(IList<string> arr, string path, int idx)
     {
-        bool isUniqueCharStr = path.Length == path.Distinct().Count();
-        if (!isUniqueCharStr) return 0;
+        if (path.Length != path.Distinct().Count()) return 0;
 
         int maxLen = path.Length;
         for (int i = idx; i < arr.Count; i++)
@@ -288,4 +287,60 @@ public class Solutions
     //     }
     //     return true;
     // }
+
+    public static void CountNicePairs()
+    {
+        Console.WriteLine("Count Nice Pairs");
+        int[] nums = [42, 11, 1, 97];
+        Console.WriteLine("Input: {0}", nums.Select(n => $"{n}").Aggregate((a, b) => $"{a}, {b}"));
+        int result = CountNicePairs(nums);
+        Console.WriteLine($"Result: {result}");
+    }
+
+    private static int CountNicePairs(int[] nums)
+    {
+        int count = 0;
+
+        Dictionary<int, int> map = [];
+        int MOD = 1000000007;
+
+        foreach (var num in nums)
+        {
+            int diff = num - Rev(num);
+
+            if (map.TryGetValue(diff, out int value))
+            {
+                count = (count + value) % MOD;
+                map[diff] = value + 1;
+            }
+            else
+            {
+                map[diff] = 1;
+            }
+        }
+
+        return count;
+    }
+
+    private static int Rev(int num)
+    {
+        int reverse = 0;
+        while (num > 0)
+        {
+            reverse = (reverse * 10) + (num % 10);
+            num /= 10;
+        }
+        return reverse;
+    }
+
+    public static void PseudoPalindrome()
+    {
+        Console.WriteLine("Pseudo Palindrome");
+        TreeNode root = new(2, new TreeNode(3, new TreeNode(3), new TreeNode(1)), new TreeNode(1, null, new TreeNode(1)));
+        var pseudoPalindrome = new PseudoPalindrome();
+
+        Console.WriteLine("Input: {0}", root.ToString());
+        int result = pseudoPalindrome.PseudoPalindromicPaths(root);
+        Console.WriteLine($"Result: {result}");
+    }
 }

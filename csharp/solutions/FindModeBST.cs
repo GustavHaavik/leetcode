@@ -1,23 +1,10 @@
+using utils;
+
 namespace solutions;
 
-public class FindModeBST(FindModeBST.TreeNode root)
+public class FindModeBST(TreeNode root)
 {
     private readonly TreeNode root = root;
-
-    public class TreeNode(int val = 0, TreeNode? left = null, TreeNode? right = null)
-    {
-        public int val = val;
-        public TreeNode Left { get; set; } = left;
-        public TreeNode Right { get; set; } = right;
-
-        public override string ToString()
-        {
-            string leftStr = Left != null ? Left.ToString() : "null";
-            string rightStr = Right != null ? Right.ToString() : "null";
-
-            return $"[{val},{leftStr},{rightStr}]".Replace(",,", ",");
-        }
-    }
 
     int currentVal = int.MinValue;
     int currentCount = 0;
@@ -37,7 +24,7 @@ public class FindModeBST(FindModeBST.TreeNode root)
         if (node == null) return;
 
         // First recur on left child
-        CountOccurrences(node.Left, modes);
+        CountOccurrences(node.left, modes);
 
         // If this is the first occurrence of this value
         if (node.val != currentVal)
@@ -60,6 +47,6 @@ public class FindModeBST(FindModeBST.TreeNode root)
         }
 
         // Now recur on right child
-        CountOccurrences(node.Right, modes);
+        CountOccurrences(node.right, modes);
     }
 }

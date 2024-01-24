@@ -15,7 +15,8 @@ namespace csharp
             // Solutions.IsSubSequence();
             // Solutions.FindErrorInNums();
             // Solutions.ReverseWord();
-            Solutions.FindMaxConcatenatedString();
+            // Solutions.FindMaxConcatenatedString();
+            Solutions.PseudoPalindrome();
         }
     }
 }
